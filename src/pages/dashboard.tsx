@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+// src/pages/dashboard.tsx
+import { useState } from 'react';
 import qrcode from 'qrcode-generator';
 import { saveQR } from '../utils/db';
 
@@ -19,7 +20,6 @@ export default function Dashboard() {
   const [wifiEncryption, setWifiEncryption] = useState<'WPA' | 'WEP' | 'nopass'>('WPA');
   const [qrImageData, setQrImageData] = useState<string | null>(null);
   const [savedMessage, setSavedMessage] = useState('');
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const getQRData = (): string => {
     switch (qrType) {
@@ -93,15 +93,15 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex flex-row w-full min-h-screen p-6 gap-6 bg-gray-50">
-      <div className="w-1/2 bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6">QR Code Data</h2>
+    <div className="flex flex-col lg:flex-row w-full min-h-screen p-3 md:p-4 lg:p-6 gap-3 md:gap-4 lg:gap-6 bg-gray-50">
+      <div className="w-full lg:w-1/2 bg-white p-4 md:p-5 lg:p-6 rounded-lg shadow-md">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">QR Code Data</h2>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
           <select
             value={qrType}
             onChange={(e) => setQrType(e.target.value as QRType)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
           >
             <option value="text">Text</option>
             <option value="url">URL</option>
@@ -119,7 +119,7 @@ export default function Dashboard() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={4}
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               placeholder="Enter any text..."
             />
           </div>
@@ -132,7 +132,7 @@ export default function Dashboard() {
               type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               placeholder="https://example.com"
             />
           </div>
@@ -146,7 +146,7 @@ export default function Dashboard() {
                 type="email"
                 value={emailTo}
                 onChange={(e) => setEmailTo(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
                 placeholder="recipient@example.com"
               />
             </div>
@@ -156,7 +156,7 @@ export default function Dashboard() {
                 type="text"
                 value={emailSubject}
                 onChange={(e) => setEmailSubject(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               />
             </div>
             <div className="mb-4">
@@ -165,7 +165,7 @@ export default function Dashboard() {
                 value={emailBody}
                 onChange={(e) => setEmailBody(e.target.value)}
                 rows={3}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               />
             </div>
           </>
@@ -178,7 +178,7 @@ export default function Dashboard() {
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               placeholder="+1234567890"
             />
           </div>
@@ -192,7 +192,7 @@ export default function Dashboard() {
                 type="tel"
                 value={smsPhone}
                 onChange={(e) => setSmsPhone(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
                 placeholder="+1234567890"
               />
             </div>
@@ -202,7 +202,7 @@ export default function Dashboard() {
                 value={smsMessage}
                 onChange={(e) => setSmsMessage(e.target.value)}
                 rows={3}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               />
             </div>
           </>
@@ -216,7 +216,7 @@ export default function Dashboard() {
                 type="text"
                 value={wifiSSID}
                 onChange={(e) => setWifiSSID(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               />
             </div>
             <div className="mb-4">
@@ -225,7 +225,7 @@ export default function Dashboard() {
                 type="text"
                 value={wifiPassword}
                 onChange={(e) => setWifiPassword(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               />
             </div>
             <div className="mb-4">
@@ -233,7 +233,7 @@ export default function Dashboard() {
               <select
                 value={wifiEncryption}
                 onChange={(e) => setWifiEncryption(e.target.value as 'WPA' | 'WEP' | 'nopass')}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm md:text-base"
               >
                 <option value="WPA">WPA/WPA2</option>
                 <option value="WEP">WEP</option>
@@ -245,28 +245,28 @@ export default function Dashboard() {
 
         <button
           onClick={generateQR}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mb-3"
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors text-sm md:text-base mb-3"
         >
           Generate QR Code
         </button>
       </div>
 
-      <div className="w-full bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-start">
-        <h2 className="text-2xl font-bold mb-6">QR Code</h2>
-        <div className="border-2 border-gray-200 p-4 rounded-lg mb-4">
+      <div className="w-full lg:w-1/2 bg-white p-4 md:p-5 lg:p-6 rounded-lg shadow-md flex flex-col items-center justify-start">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">QR Code</h2>
+        <div className="border-2 border-gray-200 p-3 md:p-4 rounded-lg mb-4 w-full flex justify-center">
           {qrImageData ? (
-            <img src={qrImageData} alt="QR Code" className="max-w-full h-auto" />
+            <img src={qrImageData} alt="QR Code" className="max-w-full h-auto w-48 md:w-56 lg:w-64" />
           ) : (
-            <div className="w-[300px] h-[300px] bg-gray-100 flex items-center justify-center text-gray-400">
+            <div className="w-48 md:w-56 lg:w-64 h-48 md:h-56 lg:h-64 bg-gray-100 flex items-center justify-center text-gray-400 text-sm">
               QR code preview
             </div>
           )}
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
           <button
             onClick={saveQRCode}
             disabled={!qrImageData}
-            className={`py-2 px-6 rounded-md transition-colors ${
+            className={`py-2 px-4 md:px-6 rounded-md transition-colors text-sm md:text-base w-full sm:w-auto ${
               qrImageData
                 ? 'bg-purple-600 text-white hover:bg-purple-700'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -277,7 +277,7 @@ export default function Dashboard() {
           <button
             onClick={downloadQR}
             disabled={!qrImageData}
-            className={`py-2 px-6 rounded-md transition-colors ${
+            className={`py-2 px-4 md:px-6 rounded-md transition-colors text-sm md:text-base w-full sm:w-auto ${
               qrImageData
                 ? 'bg-green-600 text-white hover:bg-green-700'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -287,10 +287,9 @@ export default function Dashboard() {
           </button>
         </div>
         {savedMessage && (
-          <p className="mt-3 text-green-600 font-medium">{savedMessage}</p>
+          <p className="mt-3 text-green-600 font-medium text-sm md:text-base">{savedMessage}</p>
         )}
       </div>
-      <canvas ref={canvasRef} className="hidden" />
     </div>
   );
 }
