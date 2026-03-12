@@ -17,12 +17,6 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex flex-row items-center justify-end w-full mr-2 md:mr-3 gap-3 md:gap-4 lg:gap-6">
-        <Link to="/" className="font-semibold text-primary hover:underline text-sm md:text-base">
-          Create
-        </Link>
-        <Link to="/history" className="font-semibold text-primary hover:underline text-sm md:text-base">
-          History
-        </Link>
         <h1 className="font-bold italic text-lg md:text-xl lg:text-2xl text-primary text-end w-full">
           QR Maker
         </h1>
